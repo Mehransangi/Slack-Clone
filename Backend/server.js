@@ -12,7 +12,7 @@ app.use(express.json()); // req.body
 app.use("/api/inngest", serve({ client: inngest, functions }));
 
 app.get("/", (req, res) => {
-    res.send(" <h1> Hello Suckers </h1>")
+    res.send(" <h1> Hello Suckers </h1>");
 })
 
 const startServer = async () => {
