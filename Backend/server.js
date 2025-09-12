@@ -19,8 +19,8 @@ const startServer = async () => {
     try {
         await connectDB()
         if (ENV.NODE_ENV !== "production") {
-            const port = ENV.PORT;
-            app.listen(port, () => console.log(`http://localhost:${port}/`))
+            // const port = ENV.PORT;
+            // app.listen(port, () => console.log(`http://localhost:${port}/`))
         }
     } catch (error) {
         console.error(error)
