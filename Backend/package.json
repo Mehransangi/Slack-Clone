@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  "type": "module",
   "scripts": {
     "dev": "node --watch server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "type": "module",
   "dependencies": {
     "@clerk/express": "^1.7.30",
     "@vercel/node": "^5.3.22",
@@ -17,6 +17,7 @@
     "dotenv": "^17.2.2",
     "express": "^5.1.0",
     "inngest": "^3.40.3",
-    "mongoose": "^8.18.1"
+    "mongoose": "^8.18.1",
+    "serverless-http": "^4.0.0"
   }
 }

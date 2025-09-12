@@ -1,10 +1,9 @@
 import express from 'express'
-// import { ENV } from './src/config/env.js';
 import { clerkMiddleware } from '@clerk/express'
 import { connectDB } from './config/db.js';
 import { serve } from "inngest/express";
 import { inngest, functions } from "./src/inngest"
-
+import { serverless } from "serverless-http"
 const app = express()
 app.use(clerkMiddleware()) // req.auth
 app.use(express.json()); // req.body
@@ -15,18 +14,6 @@ app.get("/", (req, res) => {
     res.send(" <h1> Hello Suckers </h1>");
 })
 
-const startServer = async () => {
-    try {
-        await connectDB()
-        // if (ENV.NODE_ENV === "Development") {
-            // const port = ENV.PORT;
-            // app.listen(port, () => console.log(`http://localhost:${port}/`))
-        // }
-    } catch (error) {
-        console.error(error)
-        process.exit(1)
-    }
-}
-startServer()
+await connectDB()
 
-export default app
+export const handler = serverless(app);
