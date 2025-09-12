@@ -15,9 +15,7 @@
     "@vercel/node": "^5.3.22",
     "cors": "^2.8.5",
     "dotenv": "^17.2.2",
-    "express": "^5.1.0",
     "inngest": "^3.40.3",
-    "mongoose": "^8.18.1",
-    "serverless-http": "^4.0.0"
+    "mongoose": "^8.18.1"
   }
 }
