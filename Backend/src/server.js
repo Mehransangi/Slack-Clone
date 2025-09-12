@@ -1,9 +1,9 @@
 import express from 'express'
-import { ENV } from './src/config/env.js';
 import { clerkMiddleware } from '@clerk/express'
 import { connectDB } from './config/db.js';
 import { serve } from "inngest/express";
-import { inngest, functions } from "../config/inngest.js"
+import { functions, inngest } from "./config/inngest.js";
+import { ENV } from './config/env.js';
 
 const app = express()
 app.use(clerkMiddleware()) // req.auth
