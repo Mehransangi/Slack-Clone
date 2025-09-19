@@ -1,6 +1,7 @@
 import { Inngest } from "inngest";
 import { connectDB } from "./db.js";
 import { User } from "../models/userModel.js";
+import { uploadStreamUser } from "./stream.js";
 
 // Create a client to send and receive events
 export const inngest = new Inngest({ id: "slack-clone" });
@@ -19,8 +20,13 @@ const syncUser = inngest.createFunction(
             name: `${first_name || ""} ${last_name || ""}`,
             image: image_url,
         }
-
         await User.create(newUser)
+
+        await uploadStreamUser({
+            id: newUser.clerkId.toString(),
+            name: newUser.name,
+            image: newUser.image
+        })
 
     }
 )
@@ -32,7 +38,7 @@ const deleteUser = inngest.createFunction(
         await connectDB()
         const {id} = event.data
         await User.deleteOne({ clerkId: id})
-        // await deleteStreamUser(id.toString())
+        await deleteStreamUser(id.toString())
     }
 )
 // Create an empty array where we'll export future Inngest functions
