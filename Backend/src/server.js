@@ -7,11 +7,13 @@ import { serve } from "inngest/express";
 import { functions, inngest } from "./config/inngest.js";
 import { ENV } from './config/env.js';
 import chatRoutes from '../src/routes/chatRoutes.js'
+import cors from "cors";
 
 const app = express()
+
 app.use(clerkMiddleware()) // req.auth
 app.use(express.json()); // req.body
-
+app.use(cors({origin: "http://localhost:5173", credentials: true}))
 app.get("/debug-sentry", (req, res) => {
   throw new Error("My first Sentry error!");
 });

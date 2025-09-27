@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { useAuth } from "@clerk/clerk-react";
 
 
-const AuthContext = createContext()
+const AuthContext = createContext({})
 
 export default function AuthProvider({ children }) {
     const { getToken } = useAuth()
@@ -13,7 +13,7 @@ export default function AuthProvider({ children }) {
         const interceptor = axiosInstance.interceptors.request.use(
             async (config) => {
                 try {
-                    const token = getToken()
+                    const token = await getToken()
                     if (token) config.headers.Authorization = `Bearer ${token}`
                 } catch (error) {
                     if (error.message?.includes("auth") || error.message.includes("token")) {

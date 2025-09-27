@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/server.js",
-  "scripts": {
-    "dev": "NODE_OPTIONS='--import ./instrument.mjs' node --watch src/server.js"
-  },
+"scripts": {
+  "dev": "nodemon --exec \"node --import ./instrument.mjs\" src/server.js",
+  "start": "node --import ./instrument.mjs src/server.js"
+}
+,
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -13,11 +15,14 @@
   "dependencies": {
     "@clerk/express": "^1.7.30",
     "@sentry/node": "^10.12.0",
-    "@vercel/node": "^5.3.22",
     "cors": "^2.8.5",
     "dotenv": "^17.2.2",
     "inngest": "^3.40.3",
     "mongoose": "^8.18.1",
+    "nodemon": "^3.1.10",
     "stream-chat": "^9.19.1"
+  },
+  "devDependencies": {
+    "cross-env": "^10.0.0"
   }
 }
