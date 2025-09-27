@@ -1,5 +1,5 @@
 import { useUser } from '@clerk/clerk-react'
-import { Component, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { getStreamToken } from '../lib/api'
 import { StreamChat } from 'stream-chat'
@@ -9,9 +9,9 @@ const STREAM_API_KEY = import.meta.env.VITE_STREAM_API_KEY
 
 export const useStreamChat = () => {
     const { user } = useUser()
-    const { chatClient, setChatClient } = useState(null)
+    const [chatClient, setChatClient] = useState(null)
 
-    const { data: tokenData, isLoading: tokenLoading, error: tokenError } = useQuery({
+    const { data: tokenData, isLoading, error } = useQuery({
         queryKey: ['streamToken'],
         queryFn: getStreamToken,
         enabled: !!user?.id,
@@ -37,7 +37,7 @@ export const useStreamChat = () => {
             } catch (error) {
                 console.log(error)
                 Sentry.captureException(error, {
-                    tags: { Component: "useStreamChat" },
+                    tags: { component: "useStreamChat" },
                     extra: {
                         context: "stream_chat_connection",
                         userId: user?.id,
@@ -48,11 +48,12 @@ export const useStreamChat = () => {
         }
         initChat()
 
+
         return () => {
             cancelled = true
             client.disconnectUser()
         }
     }, [tokenData?.token, user?.id])
 
-    return { chatClient, isLoading: tokenLoading, error: tokenError }
+    return { chatClient, isLoading, error }
 }

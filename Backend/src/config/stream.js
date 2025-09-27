@@ -7,25 +7,27 @@ export const uploadStreamUser = async (userData) => {
   try {
     await streamClient.upsertUser(userData)
     console.log(`User upserted: ${userData.name}`)
+    return userData
   } catch (error) {
     console.log(error)
   }
 }
 
 export const deleteStreamUser = async (userId) => {
-    try {
-        await streamClient.deleteUser(userId)
-        console.log(`user deleted ${userId}`)
-    } catch (error) {
-        console.error(error)
-    }
+  try {
+    await streamClient.deleteUser(userId)
+    console.log(`user deleted ${userId}`)
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 export const generateStreamToken = (userId) => {
-    try {
-        const uesrIdString = userId.toString()
-        return streamClient.createToken(uesrIdString)
-    } catch (error) {
-        console.log(error)
-    }
-}
+  try {
+    const userIdString = String(userId);
+    return streamClient.createToken(userIdString); 
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
