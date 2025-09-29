@@ -6,7 +6,7 @@ const CustomChannelPreview = ({channel, setActiveChannel, activeChannel}) => {
     const isDM= channel.data.member_count === 2 && channel.data.id.includes("user_")
     if(isDM) return null
 
-    const unreadChannel = channel.unreadCount
+    const unreadChannel = channel.countUnread()
 
   return (
     <button onClick={()=> setActiveChannel({channel})}
