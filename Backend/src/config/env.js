@@ -15,4 +15,5 @@ export const ENV = {
 
     INGEST_EVENT_KEY: process.env.INGEST_EVENT_KEY,
     INGEST_SIGNING_KEY: process.env.INGEST_SIGNING_KEY,
+    CLIENT_URL: process.env.CLIENT_URL,
 }

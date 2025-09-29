@@ -4,9 +4,8 @@ import toast from "react-hot-toast";
 import { useAuth } from "@clerk/clerk-react";
 
 
-const AuthContext = createContext({})
-
 export default function AuthProvider({ children }) {
+    const AuthContext = createContext({})
     const { getToken } = useAuth()
 
     useEffect(() => {

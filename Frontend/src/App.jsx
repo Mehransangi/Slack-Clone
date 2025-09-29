@@ -4,9 +4,9 @@ import HomePage from './pages/HomePage';
 import AuthPage from './pages/AuthPage';
 import * as Sentry from "@sentry/react";
 import CallPage from './pages/CallPage';
+const SentryRoutes = Sentry.withSentryReactRouterV7Routing(Routes);
 
 export default function App() {
-  const SentryRoutes = Sentry.withSentryReactRouterV7Routing(Routes);
   const { isSignedIn,isLoaded } = useAuth()
   if(!isLoaded) return null
   return (

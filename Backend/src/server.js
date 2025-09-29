@@ -13,7 +13,7 @@ const app = express()
 
 app.use(clerkMiddleware()) // req.auth
 app.use(express.json()); // req.body
-app.use(cors({origin: "http://localhost:5173", credentials: true}))
+app.use(cors({origin: ENV.CLIENT_URL, credentials: true}))
 app.get("/debug-sentry", (req, res) => {
   throw new Error("My first Sentry error!");
 });

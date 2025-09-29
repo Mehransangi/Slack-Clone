@@ -15,7 +15,7 @@ import {
   matchRoutes,
 } from "react-router";
 
-
+const queryClient = new QueryClient()
 // Import your Publishable Key
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
@@ -23,10 +23,8 @@ if (!PUBLISHABLE_KEY) {
   throw new Error('Missing Publishable Key')
 }
 
-const queryClient = new QueryClient()
-
 Sentry.init({
-  dsn: "https://005182c530961c968333f3685fd675e9@o4510001933451264.ingest.de.sentry.io/4510057052766288",
+  dsn: import.meta.env.VITE_SENTRY_DSN,
   integrations: [
     Sentry.reactRouterV7BrowserTracingIntegration({
       useEffect: React.useEffect,

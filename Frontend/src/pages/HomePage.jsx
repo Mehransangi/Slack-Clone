@@ -3,7 +3,7 @@ import { UserButton } from '@clerk/clerk-react'
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router'
 import { useStreamChat } from '../hooks/useStreamChat.js'
-// import PageLoader from '../components/PageLoader.jsx'
+import PageLoader from '../components/PageLoader.jsx'
 import {
   Chat,
   Channel,
@@ -22,7 +22,7 @@ import CustomChannelHeader from "../components/CustomChannelHeader.jsx"
 
 const HomePage = () => {
   const [isCreatedModalOpen, setIsCreatedModalOpen] = useState(false)
-  const [activeChannel, setActiveChannel] = useState(false)
+  const [activeChannel, setActiveChannel] = useState(null)
   const [searchParams, setSearchParams] = useSearchParams()
 
   const { chatClient, isLoading, error } = useStreamChat()
@@ -38,7 +38,7 @@ const HomePage = () => {
   }, [chatClient, searchParams])
 
 
-  // if(isLoading || !chatClient) return <PageLoader />
+  if(isLoading || !chatClient) return <PageLoader />
 
   return (
     <div className='chat-wrapper'>
