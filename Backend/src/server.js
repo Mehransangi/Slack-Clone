@@ -1,5 +1,5 @@
 import "../instrument.mjs"
-import * as Sentry  from "@sentry/node";
+import * as Sentry from "@sentry/node";
 import express from 'express'
 import { clerkMiddleware } from '@clerk/express'
 import { connectDB } from './config/db.js';
@@ -13,11 +13,10 @@ const app = express()
 
 app.use(clerkMiddleware()) // req.auth
 app.use(express.json()); // req.body
-app.use(cors({origin: ENV.CLIENT_URL, credentials: true}))
+app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }))
 app.get("/debug-sentry", (req, res) => {
-  throw new Error("My first Sentry error!");
+    throw new Error("My first Sentry error!");
 });
-
 
 app.get("/", (req, res) => {
     res.send(" <h1> Hello Suckers </h1>");
@@ -31,8 +30,8 @@ const startServer = async () => {
     try {
         await connectDB()
         if (ENV.NODE_ENV !== "production") {
-        const port = ENV.PORT;
-        app.listen(port, () => console.log(`http://localhost:${port}/`))
+            const port = ENV.PORT;
+            app.listen(port, () => console.log(`http://localhost:${port}/`))
         }
     } catch (error) {
         console.error(error)
